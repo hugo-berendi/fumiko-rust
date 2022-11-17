@@ -1,0 +1,1 @@
+run: ./target/release/fumiko-rust
