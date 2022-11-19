@@ -3,6 +3,7 @@ use std::env;
 use serenity::async_trait;
 use serenity::model::channel::Message;
 use serenity::model::gateway::Ready;
+use serenity::model::prelude::GuildId;
 use serenity::prelude::*;
 
 struct Handler;
@@ -22,8 +23,8 @@ impl EventHandler for Handler {
     }
 
     // send a message when a member joins the server
-    async fn guild_member_addition(&self, ctx: Context, guild: Guild, new_member: Member) {
-        let guild = guild.id.to_guild_cached(&ctx.cache).await.unwrap();
+    async fn guild_member_addition(&self, ctx: Context, guild_id: GuildId, new_member: Member) {
+        let guild = guild_id.to_guild_cached(&ctx.cache).await.unwrap();
         let channel_id = guild
             .channels
             .values()
